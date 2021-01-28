@@ -70,11 +70,18 @@ News Pusher:
  $ docker run -ti --rm ubuntu:18.04 bash
 docker run -p 8888:80 -ti --rm ubuntu:18.04 bash
 apt-get update
+apt search mysql
+apt search mysql-server
+apt search mysql-server-5.7
 apt-get install -y nginx
+apt-get install -y mysql-server-5.7
+service mysql start
 service nginx start
 service nginx status
 service nginx stop
-
+service nginx stop
+service --status-all
+echo "SHOW DATABASES" | mysql -u root
 
 docker image prune
 
@@ -83,5 +90,10 @@ docker image ls | grep img_npnginx
 docker image rm img_npnginx
 docker rm -f npnginx
 docker run -d -p 8888:80 --restart always --name npnginx img_npnginx
+docker exec -ti npnginx bash
+docker logs npnginx
 docker ps
+docker stop npnginx
+
+docker build -t img_npnginx -f Dockerfile . && docker rm -f npnginx && docker run -d -p 8888:80 --restart always --name npnginx img_npnginx
 docker logs npnginx
