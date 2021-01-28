@@ -43,28 +43,45 @@ Grobkonzept:
   - 2 laufende Container:
     * Automatisch hoch/runterfahren mit Windows-Login
 
+docker image ls
+docker ps
+docker ps -a
+
+docker start npmysql
+docker stop  npmysql
+docker kill  npmysql
+docker rm    npmysql
+docker rm -f npmysql  # lösch auch laufende Container
+
+MySQL:
+ $ docker run --restart always --name npmysql -p 13306:3306 -e MYSQL_ROOT_PASSWORD=PWD -d mysql:5.7 --max-allowed-packet=512M
+   # --name -> Container-Name
+   # -p     -> localhostport:innerport
+   # -e     -> Env-Variable (image reagiert "zufällig" auf MYSQL_ROOT_PASSWORD)
+   # -d     -> Run in background
+   # mysql:5.7 -> Image name -> siehe: https://hub.docker.com/_/mysql
+   run erzeugt neuen Container aus Image, kann man nur einmal aufrufen, danach container löschen um run nochmal zu machen
+
+News Pusher:
+ - Selber ein Image bauen
+ - Ubuntu 18.04
+ - Image via Dockerfile bauen
+ $ docker run --name sepp ubuntu:18.04
+ $ docker run -ti --rm ubuntu:18.04 bash
+docker run -p 8888:80 -ti --rm ubuntu:18.04 bash
+apt-get update
+apt-get install -y nginx
+service nginx start
+service nginx status
+service nginx stop
 
 
+docker image prune
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+docker build -t img_npnginx -f Dockerfile .
+docker image ls | grep img_npnginx
+docker image rm img_npnginx
+docker rm -f npnginx
+docker run -d -p 8888:80 --restart always --name npnginx img_npnginx
+docker ps
+docker logs npnginx
