@@ -1,0 +1,70 @@
+
+
+  Docker = Kernsoftware (im Grunde nur ein Deamon mit Kommandozeile)
+
+
+  Linux -> Docker
+  
+
+  Windows -> VM -> Linux -> Docker
+  MacOS   -> VM -> Linux -> Docker
+
+
+  Docker Desktop -> Docker.app 
+    -> Automatisch alles mit VM etc.
+
+
+
+  Image     -> TGZ von Dateisystem
+  Container -> Angeworfenes Dateisystem
+  Overlay FS
+
+  Image
+     docker run 
+        -> Container
+
+  Container
+     Main-Prozess
+       CMD -> mysql
+  Container
+     Main-Prozess
+       CMD -> nginx
+               | c5
+Grobkonzept:
+  - Wir nehmen Docker Desktop
+  - Docker Desktop gibts nur für Windows 10
+  - Einstellung: Start Docker Desktop when you Log in
+  - Installation:
+    * Docker Desktop installieren -> Easy
+    * docker run mysql:8 --autostart --password...
+    * Download von unserem Image
+    * docker image load  ...
+    * docker run ... unser eigenes 2. Container
+  - 2 laufende Container:
+    * Automatisch hoch/runterfahren mit Windows-Login
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
