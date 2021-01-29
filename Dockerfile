@@ -37,5 +37,8 @@ RUN		chown -R www-data:www-data /var/www/html/application/config/
 RUN		chown -R www-data:www-data /var/www/html/application/files/
 RUN		chown -R www-data:www-data /var/www/html/application/languages/
 COPY		create_database.sql /create_database.sql
-RUN		service mysql start && mysql -u root < create_database.sql && service mysql stop
+RUN		service mysql start && \
+		mysql -u root < create_database.sql && \
+		runuser -u www-data -- /var/www/html/concrete/bin/concrete5 c5:install -n --db-server localhost --db-username newspusher --db-password newspusher --db-database newspusher --starting-point elemental_full --site newspusher --admin-password admin && \
+		service mysql stop
 CMD		["/start_services.sh"]
