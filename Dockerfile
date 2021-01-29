@@ -19,6 +19,7 @@ RUN		apt-get install -y nginx
 RUN		apt-get install -y mysql-server-5.7
 RUN		apt-get install -y unzip
 RUN		apt-get install -y nano
+RUN		apt-get install -y curl
 RUN		apt-get install -y php7.3-fpm
 RUN		apt-get install -y php7.3-mysql
 RUN		apt-get install -y php7.3-xml
@@ -26,7 +27,7 @@ RUN		apt-get install -y php7.3-gd
 RUN		apt-get install -y php7.3-mbstring
 RUN		apt-get install -y php7.3-zip
 COPY		start_services.sh   /start_services.sh
-COPY		concrete5-8.5.4.zip /concrete5-8.5.4.zip
+RUN		curl -L https://www.concrete5.org/download_file/-/view/113632/ > /concrete5-8.5.4.zip
 RUN		unzip -d /var/www   /concrete5-8.5.4.zip
 RUN		rm -r /var/www/html
 RUN		mv    /var/www/concrete5-8.5.4 /var/www/html
