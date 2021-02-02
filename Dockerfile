@@ -69,7 +69,6 @@ RUN		service mysql start && \
 # - Bei den Sprachen/Locales ist nicht ganz klar, ob alle Stellen notwendig sind,
 #   bei denen wir de_DE setzen
 #
-COPY		create_database.sql /create_database.sql
 RUN		service mysql start 								&& \
 		runuser -u www-data -- /var/www/html/concrete/bin/concrete5 c5:install		\
 			-n									\

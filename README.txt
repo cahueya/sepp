@@ -8,12 +8,13 @@ Kurzerklärung:
   * ./build.sh
   * Es wird automatisch das Image (neu) gebaut und ein Container "newspusher" gestartet
   * Der frühere Container wird kommentarlos gelöscht (inklusive Daten und allem)
+  * Im Browser aufrufen: http://localhost:8888  (Anmelden mit Username "admin" und Passwort "admin")
 - Verwendung unter Windows:
   * Docker Desktop installieren
   * Docker Desktop starten
   * Doppel-Klick: windows_build_image.cmd
   * Doppel-Klick: windows_create_and_run_container.cmd
-  * Im Browser aufrufen: http://localhost:8888
+  * Im Browser aufrufen: http://localhost:8888  (Anmelden mit Username "admin" und Passwort "admin")
   * Bookmark setzen
   * Hinweise:
     - Nicht getestet unter Windows, sollte aber funktionieren
