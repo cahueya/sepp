@@ -37,10 +37,13 @@ COPY		start_services.sh   /start_services.sh
 # - Die Rechte auf www-data setzen wir nur ausgewählt
 # - Der Rest bleibt root
 #
-RUN		curl -L https://www.concrete5.org/download_file/-/view/115589/ > /concrete5-8.5.5.zip
-RUN		unzip -d /var/www /concrete5-8.5.5.zip
+#RUN		curl -L https://www.concrete5.org/download_file/-/view/115589/ > /concrete5-8.5.5.zip
+RUN             CURL -L https://www.concrete5.org/download_file/-/view/113632/ > /concrete5-8.5.4.zip
+#RUN		unzip -d /var/www /concrete5-8.5.5.zip
+RUN		unzip -d /var/www /concrete5-8.5.4.zip
 RUN		rm -r    /var/www/html
-RUN		mv       /var/www/concrete5-8.5.5 /var/www/html
+#RUN		mv       /var/www/concrete5-8.5.5 /var/www/html
+RUN		mv       /var/www/concrete5-8.5.4 /var/www/html
 RUN		chown -R www-data:www-data /var/www/html/updates/
 RUN		chown -R www-data:www-data /var/www/html/packages/
 RUN		chown -R www-data:www-data /var/www/html/application/config/
