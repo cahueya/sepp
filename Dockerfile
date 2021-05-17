@@ -2,8 +2,8 @@
 # Hinweise:
 # - SIGTERM ist abgestimmt auf die Bash-Trap in start_services.sh
 # - Bei docker stop <container> wird dieses Signal an das PID 1 gesendet
-# - Bei CMD ganz unten müssen wir die Schreibweise in [...] nehmen, da ansonsten 
-#   unser start_services.sh Script nicht als PID 1 läuft!
+# - Bei CMD ganz unten mÃ¼ssen wir die Schreibweise in [...] nehmen, da ansonsten 
+#   unser start_services.sh Script nicht als PID 1 lÃ¤uft!
 # - DEBIAN_FRONTEND="noninteractive" machen wir damit das install php7.3 nicht
 #   interaktiv fragt, wenn es im Zuge der Dependencies tzdata installiert
 # - Unklar ob EXPOSE wirklich notendig ist
@@ -31,16 +31,16 @@ RUN		apt-get install -y php7.3-curl
 COPY		start_services.sh   /start_services.sh
 #---------------------------------------------------------------------------
 # Hinweise:
-# - Wir ziehen uns die gewünschte Version vom Concrete5
+# - Wir ziehen uns die gewÃ¼nschte Version vom Concrete5
 # - Die Option -L heist lediglich dass curl Redirects nachgehen soll
 # - Wir entpacken das Concrete5 in den Zielordner /var/www/html
-# - Die Rechte auf www-data setzen wir nur ausgewählt
+# - Die Rechte auf www-data setzen wir nur ausgewÃ¤hlt
 # - Der Rest bleibt root
 #
-RUN		curl -L https://www.concrete5.org/download_file/-/view/113632/ > /concrete5-8.5.4.zip
-RUN		unzip -d /var/www   /concrete5-8.5.4.zip
+RUN		curl -L https://www.concrete5.org/download_file/-/view/115589/ > /concrete5-8.5.5.zip
+RUN		unzip -d /var/www   /concrete5-8.5.5.zip
 RUN		rm -r    /var/www/html
-RUN		mv       /var/www/concrete5-8.5.4 /var/www/html
+RUN		mv       /var/www/concrete5-8.5.5 /var/www/html
 RUN		chown -R www-data:www-data /var/www/html/updates/
 RUN		chown -R www-data:www-data /var/www/html/packages/
 RUN		chown -R www-data:www-data /var/www/html/application/config/
@@ -48,14 +48,14 @@ RUN		chown -R www-data:www-data /var/www/html/application/files/
 RUN		chown -R www-data:www-data /var/www/html/application/languages/
 #---------------------------------------------------------------------------
 # Hinweise:
-# - Hier überschreiben wir die nginx-Config
-# - Der Einfachheit halber überschreiben wir die default-Config
+# - Hier Ã¼berschreiben wir die nginx-Config
+# - Der Einfachheit halber Ã¼berschreiben wir die default-Config
 #
 COPY		newspusher.conf /etc/nginx/sites-available/default
 #-------------------------------------------------------------------------------------
 # Hinweise:
 # - Ab hier legen wir die DB und den DB-User an
-# - Dazu müssen wir kurz die MySQL hochfahren (muss innerhalb eines RUN passieren)
+# - Dazu mÃ¼ssen wir kurz die MySQL hochfahren (muss innerhalb eines RUN passieren)
 #
 COPY		create_database.sql /create_database.sql
 RUN		service mysql start && \
@@ -64,8 +64,8 @@ RUN		service mysql start && \
 #-------------------------------------------------------------------------------------
 # Hinweise:
 # - Ab hier installieren wir das Concrete5 von der Kommandozeile aus
-# - Dazu müssen wir kurz die MySQL hochfahren (muss innerhalb eines RUN passieren)
-# - Wir führen den Installer *nicht* als root aus
+# - Dazu mÃ¼ssen wir kurz die MySQL hochfahren (muss innerhalb eines RUN passieren)
+# - Wir fÃ¼hren den Installer *nicht* als root aus
 # - Bei den Sprachen/Locales ist nicht ganz klar, ob alle Stellen notwendig sind,
 #   bei denen wir de_DE setzen
 #
@@ -89,13 +89,13 @@ RUN		service mysql start 								&& \
 #-------------------------------------------------------------------------------------
 # Hinweise:
 # - Ab hier legen wir die DB und den DB-User an
-# - Dazu müssen wir kurz die MySQL hochfahren
+# - Dazu mÃ¼ssen wir kurz die MySQL hochfahren
 #
 #-------------------------------------------------------------------------------------
 # Hinweise:
 # - Ab hier installieren wir den composer
 # - Die Installation machen wir als der User www-data
-# - Damit der Composer überhaupt geht, wir müssen vorher die Rechte im Home des Users .config/composer setzten
+# - Damit der Composer Ã¼berhaupt geht, wir mÃ¼ssen vorher die Rechte im Home des Users .config/composer setzten
 # - Wir setzen absichtlich *nicht* die Rechte vom gesamten /var/www
 #
 RUN		mkdir                   /composer									&& \
@@ -123,7 +123,7 @@ RUN		cd /var/www/html/packages/								&& \
 # Hinweise:
 # - Ab hier entpacken installieren wir das entpackte Package im Concrete5
 # - Das spart uns den entsprechenden Klick
-# - Dazu müssen wir kurz die MySQL hochfahren (muss innerhalb eines RUN passieren)
+# - Dazu mÃ¼ssen wir kurz die MySQL hochfahren (muss innerhalb eines RUN passieren)
 #
 RUN		service mysql start && \
 		cd /var/www/html/packages/newspush_master && \
