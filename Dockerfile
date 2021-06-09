@@ -8,6 +8,8 @@
 #   interaktiv fragt, wenn es im Zuge der Dependencies tzdata installiert
 # - Unklar ob EXPOSE wirklich notendig ist
 #
+
+
 FROM		ubuntu:18.04
 EXPOSE		80
 STOPSIGNAL	SIGTERM
