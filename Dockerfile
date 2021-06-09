@@ -137,5 +137,5 @@ CMD		["/start_services.sh"]
 
 #--------------------------------------------------------------------------------------
 # Starte Cron Prozess
-RUN  echo >> /etc/crontab "* * * * * curl http://localhost/index.php >/dev/null 2>&1"
-RUN  echo >> /etc/crontab "* * * * * /var/www/html/concrete/bin/concrete5 c5:job newspusher_job >/dev/null 2>&1"
+RUN  echo >> /etc/crontab "* * * * * www-data curl http://localhost/index.php >/dev/null 2>&1"
+RUN  echo >> /etc/crontab "* * * * * www-data /var/www/html/concrete/bin/concrete5 c5:job newspusher_job >/dev/null 2>&1"
