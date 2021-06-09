@@ -79,7 +79,7 @@ RUN		service mysql start 								&& \
 			--db-username		newspusher					\
 			--db-password		newspusher					\
 			--db-database		newspusher					\
-			--starting-point	elemental_full					\
+			--starting-point	elemental_blank					\
 			--site			newspusher					\
 			--admin-password	admin						&& \
 		runuser -u www-data -- /var/www/html/concrete/bin/concrete5 c5:language-install	\
@@ -134,5 +134,5 @@ CMD		["/start_services.sh"]
 
 #--------------------------------------------------------------------------------------
 # Starte Cron Prozess mit Test String
-RUN  echo >> /etc/crontab "* * * * * root date >> /tmp/xy" 
-
+RUN  echo >> /etc/crontab "* * * * * wget -q -O - http://localhost:8888/index.php >/dev/null 2>&1"
+RUN  echo >> /etc/crontab "*/5 * * * * /var/www/html/concrete/bin/concrete5 c5:job newspusher_job >/dev/null 2>&1"
