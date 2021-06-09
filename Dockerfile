@@ -114,6 +114,7 @@ RUN		mkdir                   /composer									&& \
 # - Der Einfachheit halber entpacken wir als User www-data und sparen uns dadurch den chown
 # - Im Anschluss ziehen wir die Dependencies des Packages mittels Composer-Aufruf
 #
+
 RUN		curl -L https://github.com/cahueya/newspush_master/archive/main.zip > /newspush_master.zip
 RUN		cd /var/www/html/packages/								&& \
 		runuser -u www-data -- unzip /newspush_master.zip					&& \
