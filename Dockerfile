@@ -28,6 +28,7 @@ RUN		apt-get install -y php7.3-gd
 RUN		apt-get install -y php7.3-mbstring
 RUN		apt-get install -y php7.3-zip
 RUN		apt-get install -y php7.3-curl
+RUN             apt-get install -y cron
 COPY		start_services.sh   /start_services.sh
 #---------------------------------------------------------------------------
 # Hinweise:
@@ -133,3 +134,8 @@ RUN		service mysql start && \
 		runuser -u www-data -- /var/www/html/concrete/bin/concrete5 c5:package:install newspush_master && \
 		service mysql stop
 CMD		["/start_services.sh"]
+
+#--------------------------------------------------------------------------------------
+# Starte Cron Prozess mit Test String
+RUN  echo >> /etc/crontab "* * * * * root date >> /tmp/xy" 
+
